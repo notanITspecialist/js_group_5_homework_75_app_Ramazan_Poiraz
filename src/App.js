@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {changeInput, decoded, encoded} from "./actions";
+import {connect} from "react-redux";
 
-function App() {
+const App = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input value={props.encode} name="encode" placeholder="Encoded" onChange={props.changeInp}/>
+      <button onClick={() => props.encodeMessage({
+          message: props.encode,
+          password: props.password
+      })}>encode</button>
+      <input value={props.password} name="password" placeholder="Password" onChange={props.changeInp}/>
+      <button onClick={() => props.decodeMessage({
+          message: props.decode,
+          password: props.password
+      })}>decode</button>
+      <input value={props.decode} name="decode" placeholder="Decoded" onChange={props.changeInp}/>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+    encode: state.encode,
+    decode: state.decode,
+    password: state.password
+});
+
+const mapDispatchToProps = dispatch => ({
+    changeInp: e => dispatch(changeInput(e.target.name, e.target.value)),
+    encodeMessage: data => dispatch(encoded(data)),
+    decodeMessage: data => dispatch(decoded(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
