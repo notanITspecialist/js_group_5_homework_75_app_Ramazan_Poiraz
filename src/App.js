@@ -1,21 +1,42 @@
 import React from 'react';
 import {changeInput, decoded, encoded} from "./actions";
 import {connect} from "react-redux";
+import './app.css'
 
 const App = props => {
   return (
     <div>
-      <input value={props.encode} name="encode" placeholder="Encoded" onChange={props.changeInp}/>
-      <button onClick={() => props.encodeMessage({
-          message: props.encode,
-          password: props.password
-      })}>encode</button>
-      <input value={props.password} name="password" placeholder="Password" onChange={props.changeInp}/>
-      <button onClick={() => props.decodeMessage({
+      <textarea
+          className="vigenere-inp enc-dec"
+          value={props.encode}
+          name="encode"
+          placeholder="Encoded"
+          onChange={props.changeInp}
+          disabled={props.decode.length > 0}
+      />
+      <input
+          className="vigenere-inp"
+          value={props.password}
+          name="password"
+          placeholder="Password"
+          onChange={props.changeInp}
+      />
+        <button disabled={props.decode.length > 0} className="vigenere-inp" onClick={() => props.encodeMessage({
+            message: props.encode,
+            password: props.password
+        })}>encode</button>
+      <button disabled={props.encode.length > 0} className="vigenere-inp" onClick={() => props.decodeMessage({
           message: props.decode,
           password: props.password
       })}>decode</button>
-      <input value={props.decode} name="decode" placeholder="Decoded" onChange={props.changeInp}/>
+      <textarea
+          className="vigenere-inp enc-dec"
+          value={props.decode}
+          name="decode"
+          placeholder="Decoded"
+          onChange={props.changeInp}
+          disabled={props.encode.length > 0}
+      />
     </div>
   );
 }
