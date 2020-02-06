@@ -21,14 +21,14 @@ const App = props => {
           placeholder="Password"
           onChange={props.changeInp}
       />
-        <button disabled={props.decode.length > 0} className="vigenere-inp" onClick={() => props.encodeMessage({
+        <button disabled={props.decode.length > 0} className="vigenere-inp vigenere-btn" onClick={() => props.encodeMessage({
             message: props.encode,
             password: props.password
-        })}>encode</button>
-      <button disabled={props.encode.length > 0} className="vigenere-inp" onClick={() => props.decodeMessage({
+        })}>⇓</button>
+      <button disabled={props.encode.length > 0} className="vigenere-inp vigenere-btn" onClick={() => props.decodeMessage({
           message: props.decode,
           password: props.password
-      })}>decode</button>
+      })}>⇑</button>
       <textarea
           className="vigenere-inp enc-dec"
           value={props.decode}
