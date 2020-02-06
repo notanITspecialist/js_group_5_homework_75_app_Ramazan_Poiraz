@@ -21,11 +21,11 @@ const App = props => {
           placeholder="Password"
           onChange={props.changeInp}
       />
-        <button disabled={props.decode.length > 0} className="vigenere-inp vigenere-btn" onClick={() => props.encodeMessage({
+        <button disabled={props.decode.length > 0 || props.password < 1} className="vigenere-inp vigenere-btn" onClick={() => props.encodeMessage({
             message: props.encode,
             password: props.password
         })}>⇓</button>
-      <button disabled={props.encode.length > 0} className="vigenere-inp vigenere-btn" onClick={() => props.decodeMessage({
+      <button disabled={props.encode.length > 0 || props.password < 1} className="vigenere-inp vigenere-btn" onClick={() => props.decodeMessage({
           message: props.decode,
           password: props.password
       })}>⇑</button>
