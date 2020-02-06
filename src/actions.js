@@ -23,8 +23,8 @@ export const decodeErr = () => ({type: DECODE_ERR});
 export const encoded = data => async dispatch => {
     dispatch(encodeReq());
     try{
-        const encode = await axios.post('localhost:8002/encode', data);
-        dispatch(encodeRes(encode));
+        const encode = await axios.post('http://localhost:8002/encode', data);
+        dispatch(encodeRes(encode.data));
     } catch (err){
         dispatch(encodeErr());
     }
@@ -33,8 +33,8 @@ export const encoded = data => async dispatch => {
 export const decoded = data => async dispatch => {
     dispatch(decodeReq());
     try{
-        const encode = await axios.post('localhost:8002/decode', data);
-        dispatch(decodeRes(encode));
+        const encode = await axios.post('http://localhost:8002/decode', data);
+        dispatch(decodeRes(encode.data));
     } catch (err){
         dispatch(decodeErr());
     }

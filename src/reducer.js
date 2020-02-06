@@ -12,14 +12,13 @@ const reducer = (state = initialState, action) => {
     }
     if(action.type === ENCODE_RES){
         console.log(action.encoded)
-        return {...state, decode: action.encoded}
+        return {...state, decode: action.data.encoded}
     }
     if(action.type === ENCODE_ERR){
         alert('Просим прощения произошла ошибка')
     }
     if(action.type === DECODE_RES){
-        console.log(action.encoded)
-        return {...state, encode: action.decoded}
+        return {...state, encode: action.data.decoded}
     }
     if(action.type === DECODE_ERR){
         alert('Просим прощения произошла ошибка')
